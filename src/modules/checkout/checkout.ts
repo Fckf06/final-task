@@ -1,9 +1,10 @@
 import { Component } from '../component';
 import { Product } from '../product/product';
 import html from './checkout.tpl.html';
-import { formatPrice } from '../../utils/helpers';
+import { formatPrice, getIds, getPrice } from '../../utils/helpers';
 import { cartService } from '../../services/cart.service';
 import { ProductData } from 'types';
+import { eventService } from '../../services/event.service';
 
 class Checkout extends Component {
   products!: ProductData[];
@@ -35,6 +36,7 @@ class Checkout extends Component {
       body: JSON.stringify(this.products)
     });
     window.location.href = '/?isSuccessOrder';
+    eventService.purchaseEvent(Date.now(), getPrice(this.products), getIds(this.products))
   }
 }
 
