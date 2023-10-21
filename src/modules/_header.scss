@@ -14,7 +14,11 @@
   &__buttons {
     margin-left: auto;
   }
-
+  .fav {
+    &.is_empty {
+      display: none;
+    } 
+  }
   a {
     text-decoration: none;
 
