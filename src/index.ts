@@ -3,10 +3,10 @@ import Router from "./router";
 import { cartService } from "./services/cart.service";
 import { userService } from "./services/user.service";
 
-new Router();
-cartService.init();
-userService.init();
-
-setTimeout(() => {
+new Promise(res => res(userService.init()))
+.then(() => new Router().route())
+.then(() => cartService.init())
+.then(() => setTimeout(() => {
   document.body.classList.add("is__ready");
-}, 250);
+}, 250))
+.catch(e => console.log(e))
