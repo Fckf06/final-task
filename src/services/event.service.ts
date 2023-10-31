@@ -14,8 +14,7 @@ class EventService {
         body: JSON.stringify(eventAnalitics),
       })
 
-      const result = await response.json()
-      console.log('Success', result);
+      console.log('Success', response);
       
     } catch(e) {
       console.log('Error', e);
@@ -61,7 +60,7 @@ class EventService {
 
   async purchaseEvent(orderId: number, totalPrice: number, productIds: number[]) {
     const eventAnalitics = {
-      type: 'addToCard',
+      type: 'purchase',
       payload: {
         orderId,
         totalPrice,
